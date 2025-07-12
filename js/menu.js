@@ -45,19 +45,22 @@ function getSelectedIds(pel, data) {
 function getSelectedObjects() {
   const objInputEls = document.getElementById("labels--objects").querySelectorAll("input");
   const selectedObjects = Array.from(objInputEls).filter(el => el.checked).map(el => el.value);
+  const noneSelected = selectedObjects.length === 0;
 
-  if (selectedObjects.length == 0) {
-    return Array.from(objInputEls).map(el => el.value);
+  if (noneSelected) {
+    return { selectedObjects: Array.from(objInputEls).map(el => el.value), noneSelected };
   } else {
-    return selectedObjects;
+    return { selectedObjects, noneSelected };
   }
 }
 
 function getObjectIndexes(orderedIds) {
-  const selectedObjects = getSelectedObjects();
+  const { selectedObjects, noneSelected } = getSelectedObjects();
 
   const idObjIdxs = orderedIds.map(id => {
     const objIdxs = [];
+    if (noneSelected) return { id, objIdxs };
+
     imageData[id].objects.forEach((obj, idx) => {
       if (selectedObjects.includes(obj["label"])) objIdxs.push(idx);
     });
@@ -113,6 +116,15 @@ function processMenu(runUpdateYearLimits=true) {
   const orderCategoriesEl = document.getElementById("order--categories");
   const orderByYear = orderCategoriesEl.value == "year";
   const totalIds = Object.keys(imageData).length;
+
+  const mosaicButtonEl = document.getElementById("menu--create-mosaic-button");
+  const { noneSelected: noObjectSelected } = getSelectedObjects();
+
+  if (noObjectSelected) {
+    mosaicButtonEl.classList.add("disable");
+  } else {
+    mosaicButtonEl.classList.remove("disable");
+  }
 
   const validIds = processFilters();
 

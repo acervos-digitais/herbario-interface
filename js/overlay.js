@@ -115,6 +115,10 @@ function populateMosaicOverlay(imgUrl) {
   // apagar descrição
   ["overlay--colors", "overlay--description"].forEach(id => document.getElementById(id).classList.add("hidden"));
 
+  // mostrar nota sobre IA/CV
+  const errorNoteEl = document.getElementById("overlay--error-note");
+  errorNoteEl.classList.remove("hidden");
+
   // fechar overlay
   function closeOverlay(evt) {
     if (!overlayIsOpened) return

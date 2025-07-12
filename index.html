@@ -21,6 +21,7 @@
     const pageLanguage = 'pt';
   </script>
 
+  <script src="js/set.js"></script>
   <script src="js/labels.js"></script>
   <script src="js/overlay.js"></script>
   <script src="js/images.js"></script>
@@ -70,6 +71,10 @@
             <label for="LABEL-SLUG">LABEL</label>
           </div> -->
         </div>
+        <div class="menu--text">
+          Crie um mosaico com a fauna e flora das obras selecionadas.
+        </div>
+        <button id="menu--create-mosaic-button">Crie Sua Imagem</button>
       </div>
 
       <div class="menu--item" style="display: none;">
@@ -114,14 +119,6 @@
           <input id="order--year-min" class="order--year-limit hidden" type="number" min="0" max="2025" step="1" value="0"/>
           <input id="order--year-max" class="order--year-limit hidden" type="number" min="0" max="2025" step="1" value="2025" />
         </div>
-      </div>
-
-      <div class="menu--item">
-        <p class="menu--header">Mosaico</p>
-        <div class="menu--text">
-          Crie um mosaico com a fauna e flora das obras selecionadas.
-        </div>
-        <button id="menu--create-mosaic-button">Crie Sua Imagem</button>
       </div>
     </section>
 

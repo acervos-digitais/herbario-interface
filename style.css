@@ -118,6 +118,12 @@ button.button--active:hover {
   background-color: var(--color--gray-4);
 }
 
+button.disable {
+  opacity: 0.5;
+  cursor: inherit;
+  pointer-events: none;
+}
+
 select {
   display: flex;
   font-family: "Raleway", sans-serif;
